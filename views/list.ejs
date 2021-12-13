@@ -1,0 +1,43 @@
+<!--
+    here we wirte our html code
+    templates are made here
+  -->
+   
+
+<%- include("headerFile"); -%> 
+
+    <div class="box" id="heading">
+        <h1><%= listHeading %></h1>
+    </div>
+
+
+    <div class="box">
+
+
+        <% for(var i = 0; i < allItems.length; i++) { %>
+
+            <form action="/delete" method="POST">
+
+                <div class="item">
+                    <input type="checkbox" onChange="this.form.submit()"  name="checkedItem_id" value=<%= allItems[i]._id %>>
+                    <p><%= allItems[i].name %></p>
+                </div>
+
+                <input type="hidden" name="listName" value=<%= listHeading %> ></input>
+
+            </form>
+            
+        <% } %>
+
+
+        <form class="item" action="/" method="POST">
+
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="listButton" value=<%= listHeading %>>+</button>
+    
+        </form>
+
+    </div>
+
+
+<%- include("footerFile"); -%> 
